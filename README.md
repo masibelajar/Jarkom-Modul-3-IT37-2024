@@ -654,27 +654,27 @@ service nginx restart
 test masing masing benchmark load balancer
 
   - Round-Robin
-  ```ab -n 1000 -c 75 http://10.76.3.3:81/```
+  ```ab -n 1000 -c 75 http://192.235.3.3:81/```
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.1.png)
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.2.png)
 
   - Weight Round-Robin
-  ```ab -n 1000 -c 75 http://10.76.3.3:82/```
+  ```ab -n 1000 -c 75 http://192.235.3.3:82/```
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.3.png)
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.4.png)
 
   - Generic Hash
-  ```ab -n 1000 -c 75 http://10.76.3.3:83/```
+  ```ab -n 1000 -c 75 http://192.235.3.3:83/```
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.5.png)
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.6.png)
 
   - IP Hash
-  ```ab -n 1000 -c 75 http://10.76.3.3:84/```
+  ```ab -n 1000 -c 75 http://192.235.3.3:84/```
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.7.png)
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.8.png)
 
   - Least Connection
-  ```ab -n 1000 -c 75 http://10.76.3.3:85/```
+  ```ab -n 1000 -c 75 http://192.235.3.3:85/```
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.9.png)
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.9.2.png)
 
@@ -698,15 +698,15 @@ Dengan menggunakan algoritma Least-Connection, lakukan testing dengan menggunaka
 ```
 #### test 
   - Least Connection (1 Worker)
-  ```ab -n 1000 -c 75 http://10.76.3.3:85/```
+  ```ab -n 1000 -c 75 http://192.235.3.3:85/```
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/9.1.png)
 
   - Least Connection (2 Worker)
-  ```ab -n 1000 -c 75 http://10.76.3.3:85/```
+  ```ab -n 1000 -c 75 http://192.235.3.3:85/```
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/9.2.png)
 
   - Least Connection (3 Worker)
-  ```ab -n 1000 -c 75 http://10.76.3.3:85/```
+  ```ab -n 1000 -c 75 http://192.235.3.3:85/```
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/9.3.png)
 
 #### Analisis
