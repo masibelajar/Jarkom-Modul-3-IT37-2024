@@ -726,7 +726,7 @@ mkdir -p /etc/nginx/supersecret
 htpasswd -cb /etc/nginx/supersecret/htpasswd arminannie jrkmit37
 ```
 
-### No.11
+## No.11
 Lalu buat untuk setiap request yang mengandung /titan akan di proxy passing menuju halaman https://attackontitan.fandom.com/wiki/Attack_on_Titan_Wiki (11) 
 hint: (proxy_pass)
 #### Tetap menggunakan script10.sh di colossal dengan menambahkan konfigurasi seperti dibawah pada setiap benchmark load balancer
