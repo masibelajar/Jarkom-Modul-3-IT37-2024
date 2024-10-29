@@ -438,10 +438,11 @@ echo 'server {
 service php7.3-fpm restart
 service nginx restart
 ```
+`lynx 192.235.2.2 - Armin`
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/6.1.png)
-
+`lynx 192.235.2.3 - Eren`
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/6.2.png)
-
+`lynx 192.235.2.3 - Mikasa`
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/6.3.png)
 
 ## No.7
@@ -725,6 +726,8 @@ mkdir -p /etc/nginx/supersecret
 # Membuat file htpasswd dengan username arminannie dan password jrkmit37
 htpasswd -cb /etc/nginx/supersecret/htpasswd arminannie jrkmit37
 ```
+`lynx http://192.235.3.3:81`
+
 
 ## No.11
 Lalu buat untuk setiap request yang mengandung /titan akan di proxy passing menuju halaman https://attackontitan.fandom.com/wiki/Attack_on_Titan_Wiki (11) 
@@ -736,4 +739,5 @@ hint: (proxy_pass)
             proxy_pass https://attackontitan.fandom.com/wiki/Attack_on_Titan_Wiki;
         }
 ```
+`lynx http://192.235.3.3:81/titan`
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/11.png)
