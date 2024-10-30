@@ -656,31 +656,44 @@ test masing masing benchmark load balancer
 
   - Round-Robin
   ```ab -n 1000 -c 75 http://192.235.3.3:81/```
+
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.1.png)
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.2.png)
 
   - Weight Round-Robin
   ```ab -n 1000 -c 75 http://192.235.3.3:82/```
+
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.3.png)
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.4.png)
 
   - Generic Hash
   ```ab -n 1000 -c 75 http://192.235.3.3:83/```
+
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.5.png)
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.6.png)
 
   - IP Hash
   ```ab -n 1000 -c 75 http://192.235.3.3:84/```
+
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.7.png)
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.8.png)
 
   - Least Connection
   ```ab -n 1000 -c 75 http://192.235.3.3:85/```
+
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.9.png)
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.9.2.png)
 
 #### Analisis
-![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/analisis8.png)
+![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/analisa8.png)
+
+Performa Terbaik: Generic Hash menunjukkan performa terbaik dengan permintaan per detik tertinggi (1646.14), waktu per permintaan terendah (45.561 ms), dan tingkat transfer tertinggi (671.96 KB/s). Ini menunjukkan bahwa load balancer di port ini paling efisien dan responsif.
+
+Performa Terburuk: Least Connection memiliki permintaan per detik terendah (1410.55), waktu per permintaan tertinggi (53.171 ms), dan tingkat transfer terendah (575.79 KB/s). Ini menunjukkan bahwa load balancer di port ini perlu ditinjau untuk peningkatan performa.
+
+Stabilitas Waktu Koneksi: IP Hash dan Weight Round - Robbin menunjukkan stabilitas terbaik dalam waktu koneksi, dengan variasi minimal.
+
+Variasi Waktu Koneksi: Round - Robbin memiliki variasi terbesar dalam waktu koneksi, menunjukkan potensi masalah dalam distribusi beban yang perlu diselidiki lebih lanjut.
 
 
 ## No.9
@@ -711,7 +724,9 @@ Dengan menggunakan algoritma Least-Connection, lakukan testing dengan menggunaka
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/9.3.png)
 
 #### Analisis
-![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/analisis9.png)
+![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/analisia9.png)
+
+Jadi, semakin banyak worker PHP yang digunakan, semakin cepat waktu yang dibutuhkan untuk menyelesaikan 1000 permintaan, semakin tinggi requests per second, semakin rendah time per request, dan semakin tinggi transfer rate. Hal ini menunjukkan bahwa penambahan worker PHP dapat meningkatkan performa server.
 
 
 ## No.10
