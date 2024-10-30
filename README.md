@@ -685,7 +685,7 @@ test masing masing benchmark load balancer
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/8.9.2.png)
 
 #### Analisis
-![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/analisa8.png)
+![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/anlisa8.png)
 
 Performa Terbaik: Generic Hash menunjukkan performa terbaik dengan permintaan per detik tertinggi (1646.14), waktu per permintaan terendah (45.561 ms), dan tingkat transfer tertinggi (671.96 KB/s). Ini menunjukkan bahwa load balancer di port ini paling efisien dan responsif.
 
@@ -724,7 +724,7 @@ Dengan menggunakan algoritma Least-Connection, lakukan testing dengan menggunaka
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/9.3.png)
 
 #### Analisis
-![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/analisia9.png)
+![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/analisa9.png)
 
 Jadi, semakin banyak worker PHP yang digunakan, semakin cepat waktu yang dibutuhkan untuk menyelesaikan 1000 permintaan, semakin tinggi requests per second, semakin rendah time per request, dan semakin tinggi transfer rate. Hal ini menunjukkan bahwa penambahan worker PHP dapat meningkatkan performa server.
 
