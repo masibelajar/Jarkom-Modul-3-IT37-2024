@@ -742,6 +742,7 @@ mkdir -p /etc/nginx/supersecret
 htpasswd -cb /etc/nginx/supersecret/htpasswd arminannie jrkmit37
 ```
 `lynx http://192.235.3.3:81`
+![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/10.png)
 
 
 ## No.11
@@ -761,19 +762,135 @@ hint: (proxy_pass)
 ## No.12
 Selanjutnya Colossal ini hanya boleh diakses oleh client dengan IP [Prefix IP].1.77, [Prefix IP].1.88, [Prefix IP].2.144, dan [Prefix IP].2.156. (12) 
 hint: (fixed in dulu clientnya)
-####
+#### Pertamna kita membuat konfigurasi yang membuat DHCP server mengatur IP mana yang dapat mengakses PHP Load Balancer (colossal)
+`tybur - script12.sh`
+```
+#!/bin/bash
+
+# Update and install isc-dhcp-server
+apt-get update
+apt-get install isc-dhcp-server -y
+
+# Configure the DHCP server interface
+echo 'INTERFACESv4="eth0"
+INTERFACESv6=""
+' > /etc/default/isc-dhcp-server
+
+# DHCP configuration
+subnet="option domain-name \"example.org\";
+option domain-name-servers ns1.example.org, ns2.example.org;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+ddns-update-style none;
+
+subnet 192.235.1.0 netmask 255.255.255.0 {
+    range 192.235.1.5 192.235.1.25;
+    range 192.235.1.50 192.235.1.100;
+    option routers 192.235.1.1;
+    option broadcast-address 192.235.1.255;
+    option domain-name-servers 192.235.4.2;
+    default-lease-time 360;
+    max-lease-time 5220;
+}
+
+subnet 192.235.2.0 netmask 255.255.255.0 {
+    range 192.235.2.9 192.235.2.27;
+    range 192.235.2.81 192.235.2.243;
+    option routers 192.235.2.1;
+    option broadcast-address 192.235.2.255;
+    option domain-name-servers 192.235.4.2;
+    default-lease-time 1800;
+    max-lease-time 5220;
+}
+
+subnet 192.235.3.0 netmask 255.255.255.0 {
+}
+
+subnet 192.235.4.0 netmask 255.255.255.0 {
+}
+
+host Erwin {
+    hardware ethernet 6e:5a:ae:97:ba:f6;
+    fixed-address 192.235.2.156;
+}"
+
+echo "$subnet" > /etc/dhcp/dhcpd.conf
+
+service isc-dhcp-server restart
+```
+#### Pada Colossal kita mengatur pada seitap benchmark loadbalancernya IP yang dapat mengaksesnya
+`colossal - script12.sh`
+```
+        location / {
+            allow 192.235.1.77;
+            allow 192.235.1.88;
+            allow 192.235.2.144;
+            allow 192.235.2.156;
+            deny all;
+
+            proxy_pass http://round-robin;
+            auth_basic "Restricted Content";
+            auth_basic_user_file /etc/nginx/supersecret/htpasswd;
+        }
+
+        location /titan {
+            proxy_pass https://attackontitan.fandom.com/wiki/Attack_on_Titan_Wiki;
+        }
+    }
+' > /etc/nginx/sites-available/.....
 ```
 
+`erwin - script12.sh`
 ```
-![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/12.png)
+#!/bin/bash
+
+echo "auto eth0
+iface eth0 inet dhcp
+hwaddress ether 6e:5a:ae:97:ba:f6
+" > /etc/network/interfaces
+
+# Restart interface eth0 menggunakan ip link
+ip link set eth0 down
+ip link set eth0 up
+```
+Tes di tiap client
+```lynx 192.235.3.3:81```
++ Jika client tidak dapat mengakses
+![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/12.F.png)
++ Jika client berhasil mengakses
+![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/12.T.png)
 
 
 ## No.13
 Karena mengetahui bahwa ada keturunan marley yang mewarisi kekuatan titan, Zeke pun berinisiatif untuk menyimpan data data penting di Warhammer, dan semua data tersebut harus dapat diakses oleh anak buah kesayangannya, Annie, Reiner, dan Berthold.  (13)
-####
+#### Warhammer sebagai database mengkonfigurasikan user dengan passwordnya
+`warhammer - script13.sh`
+```
+#!/bin/bash
+apt-get update
+apt-get install mariadb-server -y
+service mysql start
+
+mysql -e "CREATE USER 'kelompokit37'@'%' IDENTIFIED BY 'passwordit37';"
+mysql -e "CREATE USER 'kelompokit37'@'localhost' IDENTIFIED BY 'passwordit37';"
+mysql -e "CREATE DATABASE dbkelompokit37;"
+mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'kelompokit37'@'%';"
+mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'kelompokit37'@'localhost';"
+mysql -e "FLUSH PRIVILEGES;"
+
+mysql="[mysqld]
+skip-networking=0
+skip-bind-address
+"
+echo "$mysql" > /etc/mysql/my.cnf
+
+service mysql restart
 ```
 
-```
+Test pada tiap Laraver worker (Annie, Bertholdt, Reiner)
+```mysql --host=192.235.3.4 --port=3306 --user=kelompokit37 --password```
 ![App Screenshot](https://github.com/masibelajar/Jarkom-Modul-3-IT37-2024/blob/main/img/13.png)
 
 
